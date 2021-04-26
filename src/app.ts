@@ -1,7 +1,6 @@
 import express = require('express');
 import * as bodyParser from 'body-parser';
 import AppController from './controllers';
-import TokenMiddleware from "./middleware/token.middleware";
 
 require ('./utils/connection');
 
@@ -26,7 +25,6 @@ class App {
 
   private initializeRoutes (): void {
     const router = express.Router();
-    router.use(new TokenMiddleware().token);
     router.use('/api', this.controller.router);
     this.express.use('/', router);
   }
